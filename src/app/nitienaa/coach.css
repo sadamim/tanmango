@@ -158,3 +158,9 @@
 @media print{.hos .site-header,.hos .site-footer,.hos .noprint{display:none !important}}
 .hos .prose ul,.hos .legal ul{list-style:disc}
 .hos ol{list-style:decimal}
+.hos section[id]{scroll-margin-top:84px}
+html:has(.hos){scroll-behavior:smooth}
+.hos .topicbar{background:var(--ink);color:#fff;padding:18px 0;border-top:1px solid #2C4150}
+.hos .topicbar .eyebrow{color:var(--sun);font-size:14px}
+.hos .topicbar .btn{border-color:#5B7080;color:#fff;min-height:40px}
+.hos .topicbar .btn:hover{background:#24394A;color:#fff}

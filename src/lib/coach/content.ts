@@ -7,7 +7,18 @@
 
 /** Where the coach website is mounted. Point a custom domain at it with a rewrite (see README-HUMANOS.md). */
 export const BASE = "/nitienaa";
-export const href = (p = "") => (p.startsWith("/") ? `${BASE}${p === "/" ? "" : p}` : p) || BASE;
+
+/** The website is one page: these old page addresses are now sections of it. */
+export const SECTIONS: Record<string, string> = {
+  "/about": "about", "/stories": "stories", "/programme": "programme", "/method": "method", "/events": "events",
+  "/blog": "blog", "/article": "article", "/free-resource": "free-resource", "/apply": "apply", "/enrol": "enrol", "/pricing": "enrol",
+};
+export const sec = (id: string) => `${BASE}#${id}`;
+export const href = (p = "") => {
+  if (!p.startsWith("/")) return p || BASE;
+  if (SECTIONS[p]) return sec(SECTIONS[p]);
+  return p === "/" ? BASE : `${BASE}${p}`;
+};
 
 export const LOGIN_URL = "/web/login?afterLoginRedirectTo=/portal";
 export const SIGNUP_URL = "/web/sign-up?afterLoginRedirectTo=/portal";
@@ -35,31 +46,13 @@ export const programme = {
   resourceUrl: "[RESOURCE LINK]",
 };
 
-export type NavItem = { l: string; d: string; h: string };
-export const nav: { id: string; label: string; items: NavItem[] }[] = [
-  { id: "about", label: "About", items: [
-    { l: "About Nitienaa", d: "The person behind the work", h: href("/about") },
-    { l: "Stories and proof", d: "Learner stories and results", h: href("/stories") },
-  ] },
-  { id: "programme", label: "Programme", items: [
-    { l: "THE HUMAN OS™", d: "The 6-week cohort programme", h: href("/programme") },
-    { l: "The method", d: "How the programme works", h: href("/method") },
-    { l: "Events and workshops", d: "Talks, workshops and open sessions", h: href("/events") },
-  ] },
-  { id: "resources", label: "Resources", items: [
-    { l: "Blog", d: "All articles", h: href("/blog") },
-    { l: "Article", d: "Latest article", h: href("/blog/sample-article") },
-    { l: "Free resource", d: "Download the free guide", h: href("/free-resource") },
-  ] },
-  { id: "apply", label: "Apply and enrol", items: [
-    { l: "Apply", d: "Tell us about you", h: href("/apply") },
-    { l: "Enrol and pay", d: "Secure your seat", h: href("/enrol") },
-    { l: "Confirmation", d: "Receipt and next steps", h: href("/confirmation") },
-  ] },
-  { id: "portal", label: "Learner login", items: [
-    { l: "Learning portal", d: "Classes, lessons and progress", h: PORTAL_URL },
-    { l: "Log in", d: "Already enrolled", h: LOGIN_URL },
-  ] },
+/** Header topics. Each one is a group of sections on the single page. */
+export type Topic = { id: string; label: string; h: string; sections: { l: string; id: string }[] };
+export const nav: Topic[] = [
+  { id: "about", label: "About", h: sec("about"), sections: [{ l: "About Nitienaa", id: "about" }, { l: "Stories and proof", id: "stories" }] },
+  { id: "programme", label: "Programme", h: sec("programme"), sections: [{ l: "THE HUMAN OS™", id: "programme" }, { l: "The method", id: "method" }, { l: "Events and workshops", id: "events" }] },
+  { id: "resources", label: "Resources", h: sec("blog"), sections: [{ l: "Blog", id: "blog" }, { l: "Latest article", id: "article" }, { l: "Free resource", id: "free-resource" }] },
+  { id: "apply", label: "Apply and enrol", h: sec("apply"), sections: [{ l: "Apply", id: "apply" }, { l: "Enrol and pay", id: "enrol" }, { l: "Confirmation", id: "confirmation" }] },
 ];
 
 /** Migrated blog posts. Add one entry per existing post (and its images under /public/blog/). */
