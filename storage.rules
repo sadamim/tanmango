@@ -1,0 +1,9 @@
+rules_version = '2';
+// Uploads are read and written only by the server (Admin SDK). Block all direct client access.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

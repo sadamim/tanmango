@@ -1,0 +1,36 @@
+{
+  "name": "tagmango-clone",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "dev:agent": "NEXT_DIST_DIR=.next-agent STORE_DRIVER=file DATA_DIR=.agent-data next dev -p 3001",
+    "test:store": "tsx tests/store-contract.ts",
+    "migrate:firebase": "node --env-file=.env.local --import tsx scripts/migrate-to-firebase.ts"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.10.0",
+    "lottie-web": "^5.12.2",
+    "next": "15.5.29",
+    "nodemailer": "^6.10.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/nodemailer": "^8.0.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.29",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  }
+}

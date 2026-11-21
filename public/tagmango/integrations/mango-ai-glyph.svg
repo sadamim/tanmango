@@ -1,0 +1,46 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="114.999" height="114.999" viewBox="0 0 114.999 114.999" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Typography / Mango AI">
+<rect width="114.999" height="114.999" fill="white" fill-opacity="0.01"/>
+<g id="Vector" filter="url(#filter0_iiii_0_87)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M75.838 22.9011C77.4876 22.3283 79.0699 21.6184 80.7267 21.2358C84.157 20.4429 87.4689 21.1099 90.6481 22.4931C94.7837 24.2927 98.286 27.0178 101.507 30.1287C102.42 31.0106 102.552 32.2771 101.751 33.1375C97.9213 37.2518 93.6928 40.8366 88.2533 42.633C85.0586 43.6881 81.8203 43.739 78.6098 42.5993C78.5076 42.5631 78.3956 42.5532 78.2514 42.5234C79.039 43.9789 79.8753 45.3467 80.5457 46.7923C84.4603 55.2358 84.1831 63.6246 79.6591 71.6964C73.0947 83.4101 64.0364 92.5839 51.612 98.0473C44.8908 101.002 37.8334 102.245 30.4857 101.725C27.1208 101.487 23.7903 101.109 20.67 99.7138C15.3972 97.3565 12.5375 92.8115 12.8606 87.0446C13.0871 82.9986 14.7419 79.4555 17.5288 76.5786C19.5534 74.4883 20.554 72.0273 21.0846 69.2847C21.9296 64.9129 22.5825 60.4982 23.5863 56.165C25.9024 46.167 31.6487 38.5668 40.4967 33.5518C48.297 29.1312 56.5688 28.8222 64.9405 32.0141C65.6104 32.2695 65.8951 32.0061 66.261 31.5926C69.0376 28.4491 70.7363 24.7356 71.8121 20.7345C72.3657 18.6779 72.6873 16.5558 73.0634 14.4544C73.2943 13.1645 74.2593 12.2989 75.4816 12.4053C76.704 12.5114 77.6238 13.5256 77.4231 14.858C77.0659 17.228 76.5476 19.5733 76.0891 21.9274C76.019 22.2882 75.9061 22.6409 75.838 22.9011V22.9011Z" fill="url(#paint0_radial_0_87)"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_iiii_0_87" x="12.8359" y="9.85103" width="89.4437" height="91.9891" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="1.45455" operator="dilate" in="SourceAlpha" result="effect1_innerShadow_0_87"/>
+<feOffset dy="-2"/>
+<feGaussianBlur stdDeviation="1"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_0_87"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="1.45455" operator="dilate" in="SourceAlpha" result="effect2_innerShadow_0_87"/>
+<feOffset dy="-4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.2 0"/>
+<feBlend mode="normal" in2="effect1_innerShadow_0_87" result="effect2_innerShadow_0_87"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="4.6993" operator="dilate" in="SourceAlpha" result="effect3_innerShadow_0_87"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="1"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0"/>
+<feBlend mode="normal" in2="effect2_innerShadow_0_87" result="effect3_innerShadow_0_87"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="4.6993" operator="dilate" in="SourceAlpha" result="effect4_innerShadow_0_87"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.2 0"/>
+<feBlend mode="normal" in2="effect3_innerShadow_0_87" result="effect4_innerShadow_0_87"/>
+</filter>
+<radialGradient id="paint0_radial_0_87" cx="0" cy="0" r="1" gradientTransform="matrix(-32.0571 86.7464 -88.592 -31.3892 69.6914 15.0937)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F6BB22"/>
+<stop offset="1" stop-color="#FF2800"/>
+</radialGradient>
+</defs>
+</svg>
