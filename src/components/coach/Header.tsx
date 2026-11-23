@@ -6,16 +6,32 @@ import { useEffect, useState } from 'react';
 import { BASE, LOGIN_URL, PORTAL_URL, SIGNUP_URL, nav, sec } from '@/lib/coach/content';
 
 /**
- * Plain-link header. Each topic is its own page; the topics inside it are sections listed
- * in the bar at the top of that page. The topic whose page is open is highlighted.
+ * Plain-link header for the one-page site. Each topic scrolls to its first section;
+ * the topic whose sections are on screen is highlighted.
  */
 export default function Header() {
   const pathname = usePathname() || '/';
   const [mobile, setMobile] = useState(false);
+  const [active, setActive] = useState('');
+  const onHome = pathname === BASE || pathname === BASE + '/';
 
   useEffect(() => { setMobile(false); }, [pathname]);
 
-  const isActive = (h: string) => pathname === h || pathname.startsWith(h + '/');
+  // Scroll spy: highlight the topic of the section nearest the top of the screen.
+  useEffect(() => {
+    if (!onHome) { setActive(''); return; }
+    const owner: Record<string, string> = {};
+    nav.forEach((t) => t.sections.forEach((s) => { owner[s.id] = t.id; }));
+    const els = Object.keys(owner).map((id) => document.getElementById(id)).filter((e): e is HTMLElement => !!e);
+    const onScroll = () => {
+      let cur = '';
+      for (const el of els) if (el.getBoundingClientRect().top <= 140) cur = owner[el.id];
+      setActive(cur);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [onHome]);
 
   return (
     <header className="site-header">
@@ -32,7 +48,7 @@ export default function Header() {
         <div id="main-nav" className={'site-header__nav' + (mobile ? ' is-open' : '')}>
           <nav aria-label="Main" className="row" style={{ gap: 2 }}>
             {nav.map((t) => (
-              <Link key={t.id} href={t.h} className={'navbtn' + (isActive(t.h) ? ' on' : '')} aria-current={isActive(t.h) ? 'page' : undefined} onClick={() => setMobile(false)}>
+              <Link key={t.id} href={t.h} className={'navbtn' + (active === t.id ? ' on' : '')} aria-current={active === t.id ? 'location' : undefined} onClick={() => setMobile(false)}>
                 {t.label}
               </Link>
             ))}

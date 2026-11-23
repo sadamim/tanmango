@@ -6,8 +6,17 @@ import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
+import About from "@/components/nitienaa/About";
+import Programme from "@/components/nitienaa/Programme";
+import Resources from "@/components/nitienaa/Resources";
+import ApplyEnrol from "@/components/nitienaa/ApplyEnrol";
+import { getCoach } from "@/lib/coach/server";
 
-export default function Home() {
+// Live price and cohort come from the coach's programme mango.
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const { programme, mangoId } = await getCoach();
   return (
     <>
       <Navbar />
@@ -16,6 +25,11 @@ export default function Home() {
         <ProductTabs />
         <OnePlace />
         <Features />
+        {/* Header topics, each with its own sections */}
+        <About />
+        <Programme programme={programme} />
+        <Resources />
+        <ApplyEnrol programme={programme} mangoId={mangoId} />
         <Testimonials />
         <Faq />
         <Footer />

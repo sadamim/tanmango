@@ -3,6 +3,15 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Logo } from "./ui";
 
+/** Header topics: each is a section of the home page, with its own topics as sub-sections. */
+const TOPICS: [string, string][] = [
+  ["About", "/#about"],
+  ["Programme", "/#programme"],
+  ["Resources", "/#resources"],
+  ["Apply and enrol", "/#apply-and-enrol"],
+  ["Learner login", "/portal"],
+];
+
 export default function Navbar({ light = false }: { light?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -19,11 +28,19 @@ export default function Navbar({ light = false }: { light?: boolean }) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3">
       <nav
-        className={`flex w-full max-w-[560px] items-center justify-between rounded-full border py-1.5 pl-5 pr-1.5 backdrop-blur-xl transition-colors ${
+        className={`flex w-full max-w-[560px] lg:max-w-[1120px] items-center justify-between rounded-full border py-1.5 pl-5 pr-1.5 backdrop-blur-xl transition-colors ${
           dark ? "border-black/5 bg-white/70" : scrolled ? "border-white/10 bg-[#161616]/85" : "border-white/10 bg-white/[0.06]"
         }`}
       >
         <Logo dark={dark} className="!text-[22px]" />
+        <div className="hidden items-center gap-0.5 lg:flex">
+          {TOPICS.map(([l, h]) => (
+            <Link key={h} href={h} className={`rounded-full px-3 py-2 text-sm font-medium ${dark ? "text-ink/80 hover:text-ink" : "text-white/80 hover:text-white"}`}>
+              {l}
+            </Link>
+          ))}
+          <span className={`mx-1 h-5 w-px ${dark ? "bg-black/10" : "bg-white/15"}`} aria-hidden />
+        </div>
         <div className="hidden items-center gap-1 sm:flex">
           <Link href="/pricing" className={`rounded-full px-4 py-2 text-sm font-medium ${dark ? "text-ink/80 hover:text-ink" : "text-white/80 hover:text-white"}`}>
             Pricing
@@ -43,7 +60,7 @@ export default function Navbar({ light = false }: { light?: boolean }) {
         <button
           aria-label="Menu"
           onClick={() => setOpen((v) => !v)}
-          className={`grid h-10 w-10 place-items-center rounded-full sm:hidden ${dark ? "text-ink" : "text-white"}`}
+          className={`grid h-10 w-10 place-items-center rounded-full lg:hidden ${dark ? "text-ink" : "text-white"}`}
         >
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             {open ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
@@ -51,8 +68,9 @@ export default function Navbar({ light = false }: { light?: boolean }) {
         </button>
       </nav>
       {open && (
-        <div className="absolute inset-x-4 top-[68px] rounded-3xl border border-white/10 bg-[#161616]/95 p-3 backdrop-blur-xl sm:hidden">
+        <div className="absolute inset-x-4 top-[68px] rounded-3xl border border-white/10 bg-[#161616]/95 p-3 backdrop-blur-xl lg:hidden">
           {[
+            ...TOPICS,
             ["Pricing", "/pricing"],
             ["Login", "/web/login"],
             ["Sign-Up", "/web/sign-up"],

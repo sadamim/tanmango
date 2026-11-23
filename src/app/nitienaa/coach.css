@@ -164,9 +164,3 @@ html:has(.hos){scroll-behavior:smooth}
 .hos .topicbar .eyebrow{color:var(--sun);font-size:14px}
 .hos .topicbar .btn{border-color:#5B7080;color:#fff;min-height:40px}
 .hos .topicbar .btn:hover{background:#24394A;color:#fff}
-.hos .topicbar.sticky{position:sticky;top:80px;z-index:30}
-.hos .topicbar .btn.pri{background:var(--sun);border-color:var(--sun);color:var(--ink)}
-.hos .topic-page section[id]{scroll-margin-top:156px}
-.hos .topic-hero{padding-bottom:40px}
-@media (max-width:1080px){.hos .topicbar .wrap{flex-wrap:nowrap}.hos .topicbar nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.hos .topicbar nav .btn{white-space:nowrap}.hos .topicbar .eyebrow{display:none}}
-.hos .topicbar{border-bottom:1px solid #2C4150;box-shadow:0 6px 16px rgba(19,33,43,.12)}

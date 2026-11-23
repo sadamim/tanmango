@@ -1,16 +1,6 @@
-import TopicPage from '@/components/coach/TopicPage';
-import { AboutSection, StoriesSection } from '@/components/coach/Sections';
+import { redirect } from 'next/navigation';
 
-export const metadata = {
-  title: 'About Nitienaa',
-  description: 'Meet Nitienaa, the person behind THE HUMAN OS™, and read stories from learners who completed it.',
-};
-
-export default function About() {
-  return (
-    <TopicPage id="about">
-      <AboutSection />
-      <StoriesSection />
-    </TopicPage>
-  );
+// This topic is now a section of the one-page site.
+export default function Page() {
+  redirect('/nitienaa#about');
 }
