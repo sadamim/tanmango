@@ -1,0 +1,13 @@
+# dependencies and builds
+node_modules
+.next
+.next-agent
+out
+
+# secrets: never commit these
+.env
+.env*.local
+
+# Vercel and OS files
+.vercel
+.DS_Store
