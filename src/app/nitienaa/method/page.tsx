@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-// This topic is now a section of the one-page site.
+// This topic is now a section of the Programme page.
 export default function Page() {
-  redirect('/nitienaa#method');
+  redirect('/nitienaa/programme#method');
 }

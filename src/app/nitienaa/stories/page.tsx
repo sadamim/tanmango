@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-// This topic is now a section of the one-page site.
+// This topic is now a section of the About page.
 export default function Page() {
-  redirect('/nitienaa#stories');
+  redirect('/nitienaa/about#stories');
 }

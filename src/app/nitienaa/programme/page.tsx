@@ -1,6 +1,21 @@
-import { redirect } from 'next/navigation';
+import TopicPage from '@/components/coach/TopicPage';
+import { ProgrammeSection, MethodSection, EventsSection, FaqSection } from '@/components/coach/Sections';
+import { getCoach } from '@/lib/coach/server';
 
-// This topic is now a section of the one-page site.
-export default function Page() {
-  redirect('/nitienaa#programme');
+export const metadata = {
+  title: 'THE HUMAN OS™ — the 6-week programme',
+  description: 'Six weeks of live classes, lessons and assignments with Nitienaa. The week-by-week plan, the method behind it, and upcoming events.',
+};
+export const dynamic = 'force-dynamic';
+
+export default async function Programme() {
+  const { programme } = await getCoach();
+  return (
+    <TopicPage id="programme">
+      <ProgrammeSection programme={programme} />
+      <MethodSection />
+      <EventsSection />
+      <FaqSection />
+    </TopicPage>
+  );
 }
