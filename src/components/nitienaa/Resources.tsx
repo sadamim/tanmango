@@ -3,7 +3,7 @@ import Reveal from "../Reveal";
 import { Arrow } from "../ui";
 import { posts } from "@/lib/coach/content";
 import LeadForm from "./LeadForm";
-import { Photo, SubHead, TopicHead, card } from "./kit";
+import { Photo, SubHead, card } from "./kit";
 
 /** Header topic "Resources": Blog + Latest article + Free resource. */
 export default function Resources() {
@@ -12,15 +12,9 @@ export default function Resources() {
   return (
     <section id="resources" className="relative scroll-mt-24 bg-[linear-gradient(180deg,#ffffff_0%,#f6f2ef_100%)] px-4 py-20 md:px-10 md:py-28">
       <div className="mx-auto max-w-[1280px]">
-        <TopicHead
-          eyebrow="Resources"
-          segments={[{ text: "Notes on" }, { text: "being human", gradient: true }]}
-          sub="Articles from Nitienaa, the latest post, and a free resource to start with."
-          pills={[["Latest article", "article"], ["Blog", "blog"], ["Free resource", "free-resource"]]}
-        />
 
         {/* Latest article */}
-        <div className="mt-14">
+        <div>
           <SubHead id="article" eyebrow="Latest article" title={featured.title} />
           <Reveal>
             <Link href={`/nitienaa/blog/${featured.slug}`} className="group mt-6 grid overflow-hidden rounded-[32px] bg-white p-2 md:grid-cols-2">

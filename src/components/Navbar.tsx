@@ -1,20 +1,22 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "./ui";
 
-/** Header topics: each is a section of the home page, with its own topics as sub-sections. */
+/** Header topics: one page each, with their own topics as sections on that page. */
 const TOPICS: [string, string][] = [
-  ["About", "/#about"],
-  ["Programme", "/#programme"],
-  ["Resources", "/#resources"],
-  ["Apply and enrol", "/#apply-and-enrol"],
+  ["About", "/about"],
+  ["Programme", "/programme"],
+  ["Resources", "/resources"],
+  ["Apply and enrol", "/apply"],
   ["Learner login", "/portal"],
 ];
 
 export default function Navbar({ light = false }: { light?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -35,7 +37,7 @@ export default function Navbar({ light = false }: { light?: boolean }) {
         <Logo dark={dark} className="!text-[22px]" />
         <div className="hidden items-center gap-0.5 lg:flex">
           {TOPICS.map(([l, h]) => (
-            <Link key={h} href={h} className={`rounded-full px-3 py-2 text-sm font-medium ${dark ? "text-ink/80 hover:text-ink" : "text-white/80 hover:text-white"}`}>
+            <Link key={h} href={h} aria-current={pathname === h ? "page" : undefined} className={`rounded-full px-3 py-2 text-sm font-medium ${pathname === h ? (dark ? "bg-black/5 text-ink" : "bg-white/10 text-white") : dark ? "text-ink/80 hover:text-ink" : "text-white/80 hover:text-white"}`}>
               {l}
             </Link>
           ))}

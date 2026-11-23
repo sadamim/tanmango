@@ -1,6 +1,6 @@
 import Reveal from "../Reveal";
 import { Avatar } from "../ui";
-import { Photo, SubHead, TopicHead, card } from "./kit";
+import { Photo, SubHead, card } from "./kit";
 
 const values = ["[Value one]", "[Value two]", "[Value three]"];
 const stories = [
@@ -15,14 +15,8 @@ export default function About() {
   return (
     <section id="about" className="relative scroll-mt-24 bg-white px-4 py-20 md:px-10 md:py-28">
       <div className="mx-auto max-w-[1280px]">
-        <TopicHead
-          eyebrow="About"
-          segments={[{ text: "Meet" }, { text: "Nitienaa", gradient: true }]}
-          sub="The person behind THE HUMAN OS™, and the learners who have been through it."
-          pills={[["About Nitienaa", "about-nitienaa"], ["Stories and proof", "stories"]]}
-        />
 
-        <div className="mt-14 grid items-center gap-8 md:grid-cols-2 md:gap-12">
+        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
           <Reveal><Photo label="[Portrait of Nitienaa — your photography]" className="aspect-[4/5] w-full" /></Reveal>
           <Reveal delay={0.15}>
             <SubHead id="about-nitienaa" eyebrow="About Nitienaa" title="[Headline about Nitienaa, from your content]"

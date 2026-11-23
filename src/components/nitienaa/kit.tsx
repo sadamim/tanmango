@@ -30,6 +30,25 @@ export function TopicHead({ eyebrow, segments, sub, pills, dark = false }: { eye
   );
 }
 
+/** Top of a header-topic page, in the same style as the Pricing page hero, with links to the page's sections. */
+export function PageHero({ eyebrow, segments, sub, pills }: { eyebrow: string; segments: Segment[]; sub: string; pills: [string, string][] }) {
+  return (
+    <section className="relative overflow-hidden bg-ink px-4 pb-20 pt-36 text-center text-white">
+      <div className="pointer-events-none absolute -bottom-40 left-1/2 h-72 w-[900px] -translate-x-1/2 rounded-[50%] bg-[#ff6a00]/30 blur-[90px]" />
+      <p className="animate-rise relative text-xs font-semibold uppercase tracking-[0.2em] text-orange-300">{eyebrow}</p>
+      <SplitHeading as="h1" auto delay={0.1} className="relative mt-3 font-display text-[36px] font-bold leading-[1.1] tracking-tight md:text-[60px]" segments={segments} />
+      <p className="animate-rise relative mx-auto mt-5 max-w-2xl text-white/70 md:text-lg" style={{ ["--delay" as string]: "0.5s" }}>{sub}</p>
+      <nav aria-label={`${eyebrow} sections`} className="animate-rise relative mt-8 flex flex-wrap justify-center gap-2" style={{ ["--delay" as string]: "0.6s" }}>
+        {pills.map(([l, id]) => (
+          <a key={id} href={`#${id}`} className="rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-sm font-medium text-white/90 transition hover:bg-white/[0.12]">
+            {l}
+          </a>
+        ))}
+      </nav>
+    </section>
+  );
+}
+
 /** Sub-heading for a section inside a topic. */
 export function SubHead({ id, eyebrow, title, sub, dark = false, children }: { id: string; eyebrow: string; title: string; sub?: string; dark?: boolean; children?: ReactNode }) {
   return (

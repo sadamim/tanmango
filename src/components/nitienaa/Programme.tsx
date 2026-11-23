@@ -3,7 +3,7 @@ import Reveal from "../Reveal";
 import { Arrow } from "../ui";
 import type { programme as Prog } from "@/lib/coach/content";
 import Weeks from "./Weeks";
-import { SubHead, TopicHead, mangoBtn } from "./kit";
+import { SubHead, mangoBtn } from "./kit";
 
 const included = [
   ["6 live classes", "Join link, reminders by email and WhatsApp, and recordings."],
@@ -32,16 +32,9 @@ export default function Programme({ programme }: { programme: typeof Prog }) {
     <section id="programme" className="relative scroll-mt-24 bg-white px-2 py-2">
       <div className="rounded-[32px] bg-ink px-4 py-20 text-white md:px-10 md:py-28">
         <div className="mx-auto max-w-[1280px]">
-          <TopicHead
-            dark
-            eyebrow="Programme"
-            segments={[{ text: "THE HUMAN" }, { text: "OS™", gradient: true }]}
-            sub={`A live, guided ${programme.weeks}-week cohort programme. ${programme.description}`}
-            pills={[["THE HUMAN OS™", "the-human-os"], ["The method", "method"], ["Events and workshops", "events"]]}
-          />
 
           {/* THE HUMAN OS™ */}
-          <div id="the-human-os" className="mt-16 grid scroll-mt-28 gap-6 lg:grid-cols-[1.4fr_1fr]">
+          <div id="the-human-os" className="grid scroll-mt-28 gap-6 lg:grid-cols-[1.4fr_1fr]">
             <div>
               <SubHead id="weeks" dark eyebrow="Week by week" title="The six weeks" sub="Each week has one live class, lessons in the portal and one assignment." />
               <div className="mt-6"><Weeks weeks={programme.weeks} /></div>
@@ -57,8 +50,8 @@ export default function Programme({ programme }: { programme: typeof Prog }) {
                     </div>
                   ))}
                 </dl>
-                <Link href="/#enrol" className={`${mangoBtn} mt-6 w-full`}>Enrol and pay <Arrow /></Link>
-                <Link href="/#apply" className="mt-3 block text-center text-sm font-medium text-ink/60 hover:text-ink">Not sure yet? Apply first</Link>
+                <Link href="/apply#enrol" className={`${mangoBtn} mt-6 w-full`}>Enrol and pay <Arrow /></Link>
+                <Link href="/apply#apply" className="mt-3 block text-center text-sm font-medium text-ink/60 hover:text-ink">Not sure yet? Apply first</Link>
               </div>
             </Reveal>
           </div>

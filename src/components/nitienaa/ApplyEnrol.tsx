@@ -2,7 +2,7 @@ import Reveal from "../Reveal";
 import type { programme as Prog } from "@/lib/coach/content";
 import ApplyForm from "./ApplyForm";
 import Checkout from "./Checkout";
-import { SubHead, TopicHead, card } from "./kit";
+import { SubHead, card } from "./kit";
 
 const after = [
   ["Portal account created", "Automatically, with the email you paid with."],
@@ -16,15 +16,9 @@ export default function ApplyEnrol({ programme, mangoId }: { programme: typeof P
   return (
     <section id="apply-and-enrol" className="relative scroll-mt-24 bg-white px-4 py-20 md:px-10 md:py-28">
       <div className="mx-auto max-w-[1280px]">
-        <TopicHead
-          eyebrow="Apply and enrol"
-          segments={[{ text: "Secure your seat in" }, { text: `Cohort ${programme.cohort}`, gradient: true }]}
-          sub={`Next cohort starts ${programme.startDate}. Seats are limited per cohort.`}
-          pills={[["Apply", "apply"], ["Enrol and pay", "enrol"], ["Confirmation", "confirmation"]]}
-        />
 
         {/* Apply */}
-        <div className="mt-14 grid gap-8 lg:grid-cols-[1fr_1.4fr]">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr]">
           <SubHead id="apply" eyebrow="Apply" title={`Apply for ${programme.name}`} sub="It takes about 5 minutes. You will hear back by email, usually within [X] working days.">
             <ol className="mt-6 space-y-3 text-[15px] text-ink/70">
               {["We email you to confirm your application arrived.", "Nitienaa's team reviews it and may follow up.", "If it is a fit, you enrol and pay below."].map((t, i) => (
