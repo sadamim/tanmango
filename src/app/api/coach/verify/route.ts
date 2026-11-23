@@ -15,6 +15,11 @@ export async function POST(req: Request) {
   try {
     const p = await fetchPayment(paymentId);
     const n = p.notes || {};
+    // Demo payment: confirmed by Razorpay, but nothing is recorded or enrolled.
+    if (n.demo === "1") {
+      const ok = p.status === "captured" || p.status === "authorized";
+      return NextResponse.json({ ok: true, demo: true, status: ok ? "paid" : p.status === "failed" ? "failed" : "pending", paymentId: p.id });
+    }
     if (!n.creatorId || !n.mangoId) return NextResponse.json({ error: "Unknown order" }, { status: 400 });
     const buyer = { name: n.name || p.email || "Learner", email: (n.email || p.email || "").toLowerCase(), phone: n.phone || p.contact || "" };
     if (p.status === "captured" || p.status === "authorized") {

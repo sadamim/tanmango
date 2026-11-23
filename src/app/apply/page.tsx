@@ -11,7 +11,7 @@ export const metadata: Metadata = { title: "Apply and enrol", description: "Appl
 export const dynamic = "force-dynamic";
 
 export default async function ApplyPage() {
-  const { programme, mangoId } = await getCoach();
+  const { programme, mangoId, demo } = await getCoach();
   return (
     <>
       <Navbar />
@@ -22,7 +22,7 @@ export default async function ApplyPage() {
           sub={`Next cohort starts ${programme.startDate}. Seats are limited per cohort.`}
           pills={[["Apply", "apply"], ["Enrol and pay", "enrol"], ["Confirmation", "confirmation"]]}
         />
-        <ApplyEnrol programme={programme} mangoId={mangoId} />
+        <ApplyEnrol programme={programme} mangoId={mangoId} demo={demo} />
         <Faq />
         <Footer />
       </main>

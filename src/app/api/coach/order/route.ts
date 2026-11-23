@@ -17,6 +17,15 @@ export async function POST(req: Request) {
   if (!name || !/^\S+@\S+\.\S+$/.test(email)) return NextResponse.json({ error: "Enter your name and a valid email" }, { status: 400 });
 
   const coach = await getCoach();
+  // Demo (test keys, no programme set up yet): a real Razorpay test order, nothing saved or enrolled.
+  if (coach.demo && coach.amount != null) {
+    try {
+      const order = await createOrder(coach.amount, { demo: "1", name, email, phone });
+      return NextResponse.json({ keyId: process.env.RAZORPAY_KEY_ID, id: order.id, amount: order.amount, currency: order.currency, programme: `${coach.programme.name} (demo)`, prefill: { name, email, contact: phone } });
+    } catch (e) {
+      return NextResponse.json({ error: (e as Error).message }, { status: 502 });
+    }
+  }
   if (!coach.creatorId || !coach.mangoId || coach.amount == null) {
     return NextResponse.json({ error: "Enrolment isn't open yet: choose the programme mango in Growth settings." }, { status: 503 });
   }

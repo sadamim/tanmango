@@ -4,6 +4,7 @@ import PrintButton from '@/components/coach/PrintButton';
 import { href, LOGIN_URL } from '@/lib/coach/content';
 import { getCoach } from '@/lib/coach/server';
 import { store } from '@/lib/db';
+import { fetchPayment, razorpayConfigured } from '@/lib/coach/razorpay';
 
 export const metadata = {
   title: 'Payment confirmed',
@@ -28,6 +29,17 @@ export default async function Confirmation({ searchParams }: Props) {
   } else if (creatorId && paymentId) {
     [sale] = await store.find('sales', [['userId', creatorId], ['paymentId', paymentId]], { limit: 1 });
   }
+  // No saved order (e.g. a demo payment): show the receipt straight from Razorpay.
+  let demo = false;
+  if (!sale && paymentId && razorpayConfigured()) {
+    try {
+      const p = await fetchPayment(paymentId);
+      if (p.status === 'captured' || p.status === 'authorized') {
+        demo = p.notes?.demo === '1';
+        sale = { id: p.order_id, customer: p.notes?.name || p.email || 'Learner', email: p.email || p.notes?.email || '', amount: p.amount / 100, paymentId: p.id, method: `Razorpay · ${p.method || ''}`, mango: demo ? `${programme.name} (demo)` : programme.name, createdAt: new Date().toISOString() };
+      }
+    } catch { /* show the pending state */ }
+  }
   const first = sale ? String(sale.customer || '').split(' ')[0] : '';
   const amount = sale ? inr(Number(sale.amount || 0)) : programme.total;
   const date = sale ? new Date(String(sale.createdAt)).toLocaleDateString('en-IN', { dateStyle: 'medium' }) : '[DATE]';
@@ -45,6 +57,7 @@ export default async function Confirmation({ searchParams }: Props) {
             <h1 className="h2" style={{ fontSize: 'clamp(36px, 5vw, 60px)' }}>
               {sale ? `You are in${first ? `, ${first}` : ''}. Welcome to ${programme.name}.` : 'Thank you. We are confirming your payment.'}
             </h1>
+            {demo && <p className="card flat small" role="status">Demo payment in Razorpay test mode: it is not saved and no portal account was created. Choose the real programme in Growth settings to switch demo mode off.</p>}
             <p className="lead">
               {sale
                 ? `Your receipt has been emailed to ${String(sale.email)}. Your learning portal account is ready, and your login details are on their way by email and WhatsApp.`

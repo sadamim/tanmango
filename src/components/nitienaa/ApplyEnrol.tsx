@@ -12,7 +12,7 @@ const after = [
 ];
 
 /** Header topic "Apply and enrol": Apply + Enrol and pay + Confirmation. */
-export default function ApplyEnrol({ programme, mangoId }: { programme: typeof Prog; mangoId: string | null }) {
+export default function ApplyEnrol({ programme, mangoId, demo = false }: { programme: typeof Prog; mangoId: string | null; demo?: boolean }) {
   return (
     <section id="apply-and-enrol" className="relative scroll-mt-24 bg-white px-4 py-20 md:px-10 md:py-28">
       <div className="mx-auto max-w-[1280px]">
@@ -33,6 +33,7 @@ export default function ApplyEnrol({ programme, mangoId }: { programme: typeof P
         <div className="mt-20 grid gap-8 rounded-[32px] bg-[#f6f2ef] p-4 md:p-10 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <SubHead id="enrol" eyebrow="Enrol and pay" title="Pay securely and get instant access" sub="Pay with Razorpay: UPI, cards, net banking and wallets. A receipt is emailed to you automatically." />
+            {demo && <p className="mt-4 rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900"><b>Demo mode:</b> Razorpay test checkout for {programme.price}. Use Razorpay&apos;s test card or UPI; no real money moves and nothing is saved. It switches off once the real programme is chosen in Growth settings.</p>}
             {!mangoId && <p className="mt-4 rounded-2xl bg-white p-4 text-sm text-ink/60">Enrolment isn&apos;t connected yet. In the dashboard, open Growth › Settings and choose the programme mango; its price appears here.</p>}
             <div className={`${card} mt-6`}><Checkout price={programme.price} programmeName={programme.name} cohort={programme.cohort} /></div>
           </div>

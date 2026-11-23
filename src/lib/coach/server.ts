@@ -4,6 +4,8 @@ import { getGrowth, growthBySlug, type Growth } from "../growth/core";
 import { programme as fallback } from "./content";
 
 export type Coach = {
+  /** true when no real programme is set up and Razorpay test keys are in use: a ₹1 demo checkout. */
+  demo?: boolean;
   creatorId: string | null;
   growth: Growth | null;
   mangoId: string | null;
@@ -14,11 +16,26 @@ export type Coach = {
 
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
+/** Demo checkout is allowed only with Razorpay TEST keys, never live ones. */
+export const demoAllowed = () => String(process.env.RAZORPAY_KEY_ID || "").startsWith("rzp_test_") && process.env.DISABLE_DEMO_CHECKOUT !== "1";
+const demoAmount = () => Math.max(1, Number(process.env.DEMO_PROGRAMME_PRICE || 1));
+
+/** When the real programme isn't set up yet, test-mode sites sell a ₹1 demo so payments can be tested. */
+function withDemo(c: Coach): Coach {
+  if (c.mangoId || !demoAllowed()) return c;
+  const a = demoAmount();
+  return { ...c, demo: true, mangoId: "demo", amount: a, programme: { ...c.programme, price: inr(a), total: inr(a), gst: "Included" } };
+}
+
 /**
  * The coach this website belongs to: the Growth settings with slug COACH_SLUG, or the only/first one.
  * The programme mango (Growth › settings › programme) supplies the live price.
  */
 export async function getCoach(): Promise<Coach> {
+  return withDemo(await loadCoach());
+}
+
+async function loadCoach(): Promise<Coach> {
   try {
     const slug = process.env.COACH_SLUG;
     let g: Growth | null = slug ? await growthBySlug(slug) : null;
